@@ -1,0 +1,14 @@
+.red {
+  background: green;
+  height: 100vh;
+}
+.post {
+  background: grey;
+  height: 300px;
+  width: 500px;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.post button {
+  float: right;
+}

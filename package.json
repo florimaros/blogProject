@@ -1,0 +1,24 @@
+{
+  "name": "blogProject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/florimaros/blogProject.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/florimaros/blogProject/issues"
+  },
+  "homepage": "https://github.com/florimaros/blogProject#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
