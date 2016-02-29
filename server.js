@@ -48,3 +48,21 @@ app.listen(3000, function () {
   //ezeket a kereseket a porton figyeli, induljon el a serverunk
   console.log("megyAserver")
 })
+app.delete("/post/:id", function (req, res) {
+  //a server a /post/id endpoitra var egy delete kerest
+  var id = req.params.id;
+  //parameterek valtoznak, bekerul a req params objektumaba az id es tudod hasznalni az erteket
+  //console.log(id)
+  var newList = [];
+  for(var i=0; i<posts.length; i++)  {
+    //console.log(i)
+    if (!(i == id)) {
+      newList.push(posts[i])
+    }
+  }
+  //console.log(newList)
+  posts=newList;
+  res.send("ok");
+  //valaszol, kliens kuld egy kerest h szeretne vmit a szervertol,
+  //a server valaszol, a kliens elkuldi a servernek a tenyleges kereset, majd a server valaszol
+})
