@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/florimaros/blogProject#readme",
   "dependencies": {
+    "body-parser": "^1.15.0",
     "express": "^4.13.4"
   }
 }
