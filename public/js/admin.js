@@ -5,6 +5,18 @@ var date=document.querySelector(".date")
 var content=document.querySelector(".content")
 var postButton=document.querySelector(".post")
 var posts=document.querySelector("#postList")
+var addPostLink=document.querySelector(".addPostLink")
+var deletePost=document.querySelector(".deletePost")
+var addPost=document.querySelector(".addPost")
+var postsDiv=document.querySelector(".posts")
+addPostLink.addEventListener("click", function () {
+  addPost.style.display="block"
+  postsDiv.style.display="none"
+})
+deletePost.addEventListener("click", function () {
+  addPost.style.display="none"
+  postsDiv.style.display="block"
+})
 postButton.addEventListener("click", function () {
   //a post gombra tettunk egy esemenyfigyelot
   var postItem={title: title.value, date: date.value, content: content.value}
@@ -44,7 +56,7 @@ function createListItem(tiTle, id) {
     request.open("DELETE", "http://localhost:3000/post/"+id)
     request.send();
   editButton.addEventListener("click", function () {
-    
+
   })
 
 

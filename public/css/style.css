@@ -5,3 +5,15 @@ html{
 .post{
   background: rgba(255, 255, 255, 0.5);
 }
+
+textarea{
+  background: rgba(255, 255, 255, 0.5);
+}
+
+input{
+  background: rgba(255, 255, 255, 0.5);
+}
+
+button{
+  margin:5px;
+}

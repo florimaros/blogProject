@@ -3,6 +3,9 @@ var title=document.querySelector("a")
 var date=document.querySelector("h3")
 var content=document.querySelector("p")
 var id=window.location.pathname
+var link=document.createElement("a")
+link.innerText="backToTheFuture"
+link.setAttribute("href","http://localhost:3000/")
 //visszaadja az url-ben levo eleresi utvonalat
 id=id.split("/")
 //kiertekelodik a jobboldal es atadodik a baloldalnak, foldaraboljuk perjelenkent
@@ -17,9 +20,11 @@ request.onreadystatechange=function () {
     title.innerText=post.title
     date.innerText=post.date
     content.innerText=post.content
-    title.setAttribute("href", "/p/"+id)
+    title.setAttribute("href", "http://localhost:3000/")
   }
 }
+document.body.appendChild(link)
+//a dokumentum bodijahoz hozzafuzi a linkben tarolt html objektumot
 request.send();
 
 //console.log(window.location.pathname.split("/")[2])
