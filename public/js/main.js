@@ -17,17 +17,21 @@ function getPosts() {
 }
 function parseResponse(response) {
   for(var i=0; i<response.length; i++) {
-    createPost(response[i].title, response[i].date, response[i].content)
+    createPost(response[i].title, response[i].date, response[i].content, i)
   }
 }
-function createPost(tiTle, daTe, conTent) {
+function createPost(tiTle, daTe, conTent, id) {
   var post = document.createElement("div")
   post.classList.add("post")
   //a letrehozott div classs atributumahoz hozzaadtuk h post
   var title = document.createElement("h1")
+  var url=document.createElement("a")
   var date = document.createElement("h3")
   var content = document.createElement("p")
-  title.innerText= tiTle
+
+  url.innerText= tiTle
+  title.appendChild(url)
+  url.setAttribute("href", "/p/"+id)
   //beallitjuk a title belso szoveget a tiTle ertekere- tartalmara
   date.innerText= daTe
   content.innerText=conTent

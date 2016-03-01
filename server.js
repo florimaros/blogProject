@@ -44,19 +44,17 @@ app.post("/post", function (req, res) {
   res.send("ok")
 //amikor odamegy a keres berakja a tartalmat egy megfelelo helyre es valaszol h oke
 })
-app.listen(3000, function () {
-  //ezeket a kereseket a porton figyeli, induljon el a serverunk
-  console.log("megyAserver")
-})
+
 app.delete("/post/:id", function (req, res) {
   //a server a /post/id endpoitra var egy delete kerest
   var id = req.params.id;
+  id=Number(id);
   //parameterek valtoznak, bekerul a req params objektumaba az id es tudod hasznalni az erteket
   //console.log(id)
   var newList = [];
   for(var i=0; i<posts.length; i++)  {
     //console.log(i)
-    if (!(i == id)) {
+    if (!(i === id)) {
       newList.push(posts[i])
     }
   }
@@ -65,4 +63,15 @@ app.delete("/post/:id", function (req, res) {
   res.send("ok");
   //valaszol, kliens kuld egy kerest h szeretne vmit a szervertol,
   //a server valaszol, a kliens elkuldi a servernek a tenyleges kereset, majd a server valaszol
+})
+
+var path = require('path');
+app.route('/p/*').get(function(req, res) {
+res.sendFile(path.resolve('./public/post.html'));
+});
+//a /p/*akarmire erkezik egy get keres akkor egy file-t kuld vissza a
+// kliensnek a serverrol ami a public post/html es elotte feloldja az eleresi utvonalat
+app.listen(3000, function () {
+  //ezeket a kereseket a porton figyeli, induljon el a serverunk
+  console.log("megyAserver")
 })
