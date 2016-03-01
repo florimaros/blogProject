@@ -9,6 +9,8 @@ var addPostLink=document.querySelector(".addPostLink")
 var deletePost=document.querySelector(".deletePost")
 var addPost=document.querySelector(".addPost")
 var postsDiv=document.querySelector(".posts")
+var editPost=document.querySelector(".editPost")
+var editId
 addPostLink.addEventListener("click", function () {
   addPost.style.display="block"
   postsDiv.style.display="none"
@@ -42,6 +44,21 @@ function createListItem(tiTle, id) {
   var listItem=document.createElement("li");
   var button=document.createElement("button");
   var editButton=document.createElement("button")
+  editButton.addEventListener("click", function () {
+    editId=id
+    var request=new XMLHttpRequest();
+    request.open("GET", "http://localhost:3000/posts")
+    request.onreadystatechange=function () {
+      if (request.readyState===4) {
+        var response=JSON.parse(request.response)[id];
+        document.querySelector(".editTitle").value=response.title
+        document.querySelector(".editContent").value=response.content
+        document.querySelector(".editDate").value=response.date
+      }
+    }
+    request.send();
+    editPost.style.display="block"
+  })
   listItem.innerText=tiTle;
   button.innerText="delete";
   editButton.innerText="edit";
@@ -55,11 +72,6 @@ function createListItem(tiTle, id) {
     var request=new XMLHttpRequest();
     request.open("DELETE", "http://localhost:3000/post/"+id)
     request.send();
-  editButton.addEventListener("click", function () {
-
-  })
-
-
   })
 }
 function parseResponse(response) {
@@ -69,3 +81,15 @@ function parseResponse(response) {
   }
 }
 getPosts();
+var editPost=document.querySelector(".editPost")
+editPost.addEventListener("click", function () {
+  var request=new XMLHttpRequest();
+  var postItem={title: document.querySelector(".editTitle").value,
+  date: document.querySelector(".editDate").value,
+  content: document.querySelector(".editContent").value
+}
+  request.open("POST", "http://localhost:3000/edit/" + editId)
+  request.setRequestHeader("Content-Type", "application/json")
+  request.send(JSON.stringify(postItem))
+
+})

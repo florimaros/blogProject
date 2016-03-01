@@ -18,17 +18,17 @@ var posts = [
   {
     title:"post1",
     content:"1,2,3,4,5",
-    date:"25.02.2016"
+    date:"2016-02-25"
   },
   {
     title:"post2",
     content:"1,2,3,4,5",
-    date:"25.02.2016"
+    date:"2016-02-25"
   },
   {
     title:"post3",
     content:"1,2,3,4,5",
-    date:"25.02.2016"
+    date:"2016-02-25"
   }
 ]
 app.get("/posts", function (req, res) {
@@ -44,7 +44,16 @@ app.post("/post", function (req, res) {
   res.send("ok")
 //amikor odamegy a keres berakja a tartalmat egy megfelelo helyre es valaszol h oke
 })
-
+app.post("/edit/:id", function (req, res) {
+  var id=req.params.id;
+  id=Number(id);
+  posts[id].title=req.body.title
+  posts[id].content=req.body.content
+  posts[id].date=req.body.date
+  //elkuldjuk a bodijaban az uj adatokat a /id-s dologra,
+  //majd kivalasztja a listabol az id indexu elemet es atszerkeszti annak a kontentjet
+  res.send("ok")
+})
 app.delete("/post/:id", function (req, res) {
   //a server a /post/id endpoitra var egy delete kerest
   var id = req.params.id;
