@@ -10,13 +10,18 @@ link.setAttribute("href","http://localhost:3000/")
 id=id.split("/")
 //kiertekelodik a jobboldal es atadodik a baloldalnak, foldaraboljuk perjelenkent
 id=id[2]
+id=Number(id)
 //a harmadik elemre van szuksegunk
 var request = new XMLHttpRequest();
 request.open("GET", "http://localhost:3000/posts")
 request.onreadystatechange=function () {
   if (request.readyState===4) {
     var response=JSON.parse(request.response)
-    var post=response[id]
+    for(var i=0; i<response.length; i++) {
+      if (id===response[i].id) {
+        var post=response[i]
+      }
+    }
     title.innerText=post.title
     date.innerText=post.date
     content.innerText=post.content

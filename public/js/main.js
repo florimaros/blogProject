@@ -17,7 +17,7 @@ function getPosts() {
 }
 function parseResponse(response) {
   for(var i=0; i<response.length; i++) {
-    createPost(response[i].title, response[i].date, response[i].content, i)
+    createPost(response[i].title, response[i].date, response[i].content, response[i].id)
   }
 }
 function createPost(tiTle, daTe, conTent, id) {

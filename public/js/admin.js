@@ -1,6 +1,5 @@
 "use strict"
 var title=document.querySelector(".title")
-//a title osztalyu elemet eltaroljuk a title valtozoban, ezzel erjuk el a html dolgokat
 var date=document.querySelector(".date")
 var content=document.querySelector(".content")
 var postButton=document.querySelector(".post")
@@ -10,14 +9,37 @@ var deletePost=document.querySelector(".deletePost")
 var addPost=document.querySelector(".addPost")
 var postsDiv=document.querySelector(".posts")
 var editPost=document.querySelector(".editPost")
+var editPostLink=document.querySelector(".editPostLink")
 var editId
 addPostLink.addEventListener("click", function () {
   addPost.style.display="block"
   postsDiv.style.display="none"
+  editPost.style.display="none"
 })
 deletePost.addEventListener("click", function () {
   addPost.style.display="none"
   postsDiv.style.display="block"
+  editPost.style.display="none"
+  var editButtons=document.querySelectorAll(".postEditButton")
+  for(var i=0; i<editButtons.length; i++) {
+    editButtons[i].style.display="none"
+  }
+  var deletePostButtons=document.querySelectorAll(".deletePostButton")
+  for(var i=0; i<deletePostButtons.length; i++)  {
+    deletePostButtons[i].style.display="inline"
+  }
+})
+editPostLink.addEventListener("click", function () {
+  addPost.style.display="none"
+  postsDiv.style.display="block"
+  var editButtons=document.querySelectorAll(".postEditButton")
+  for(var i=0; i<editButtons.length; i++) {
+    editButtons[i].style.display="inline"
+  }
+  var deletePostButtons=document.querySelectorAll(".deletePostButton")
+  for(var i=0; i<deletePostButtons.length; i++)  {
+    deletePostButtons[i].style.display="none"
+  }
 })
 postButton.addEventListener("click", function () {
   //a post gombra tettunk egy esemenyfigyelot
@@ -43,7 +65,9 @@ function getPosts() {
 function createListItem(tiTle, id) {
   var listItem=document.createElement("li");
   var button=document.createElement("button");
+  button.classList.add("deletePostButton")
   var editButton=document.createElement("button")
+  editButton.classList.add("postEditButton")
   editButton.addEventListener("click", function () {
     editId=id
     var request=new XMLHttpRequest();
@@ -77,7 +101,7 @@ function createListItem(tiTle, id) {
 function parseResponse(response) {
   for (var i = 0; i < response.length; i++) {
     console.log(response[i].title)
-  createListItem(response[i].title, i);
+  createListItem(response[i].title, response[i].id);
   }
 }
 getPosts();
