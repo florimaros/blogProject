@@ -47,6 +47,6 @@ var path = require('path');
 app.route('/p/*').get(function(req, res) {
 res.sendFile(path.resolve('./public/post.html'));
 });
-app.listen(3000, function () {
+app.listen(process.env.PORT || 3000, function () {
   console.log("megyAserver")
 })
