@@ -1,6 +1,9 @@
 {
   "name": "blogProject",
   "version": "1.0.0",
+  "engines": {
+    "node": "4.1.1"
+  },
   "description": "",
   "main": "main.js",
   "scripts": {
