@@ -1,6 +1,6 @@
 "use strict"
 var mysql = require('mysql');
-var connection = mysql.createConnection( {
+var connection = mysql.createConnection(process.env.CLEARDB_DATABASE_URL || {
   host: 'localhost',
   user: 'root',
   password: '05011978',
