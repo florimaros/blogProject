@@ -6,26 +6,29 @@
     <link rel="stylesheet" href="/css/style.css" media="screen" title="no title" charset="utf-8">
   </head>
   <body>
-    <a href="#" class="addPostLink">addPost</a>
-    <a href="#" class="deletePost">deletePost</a>
-    <a href="#" class="editPostLink">editPost</a>
-    <a href="index.html" class="goToMainPage">goToMainPage</a>
-    <div class="addPost" style="display:none">
-      <p><input type="text" name="header" class = "title"></p>
-      <p><input type="date" name="date" class = "date"></p>
-      <p><textarea name="content" rows="15" cols="60" class = "content"></textarea></p>
-      <p><button type="button" name="button" class = "post">post</button></p>
-    </div>
-    <div class="posts" style="display:none">
-      <h3>posts</h3>
-      <ul id="postList"></ul>
-    </div>
-    <div class="editPost" style="display:none">
-      <p><input type="text" name="header" class="editTitle"></p>
-      <p><input type="date" name="date" class="editDate"></p>
-      <p><textarea  name="content"  rows="15" cols="60" class="editContent"></textarea></p>
-      <p><button  type="button" name="button" class="editPost">edit</button></p>
-    </div>
+  <div  class="wrapper">
+      <a href="#" class="addPostLink">addPost</a>
+      <a href="#" class="deletePost">deletePost</a>
+      <a href="#" class="editPostLink">editPost</a>
+      <a href="index.html" class="goToMainPage">goToMainPage</a>
+      <div class="addPost" style="display:none">
+        <p><input type="text" name="header" class = "title"></p>
+        <p><input type="date" name="date" class = "date"></p>
+        <p><textarea name="content" rows="15" cols="60" class = "content"></textarea></p>
+        <p><button type="button" name="button" class = "post">post</button></p>
+      </div>
+      <div class="posts" style="display:none">
+        <h3>posts</h3>
+        <ul id="postList"></ul>
+      </div>
+      <div class="editPost" style="display:none">
+        <p><input type="text" name="header" class="editTitle"></p>
+        <p><input type="date" name="date" class="editDate"></p>
+        <p><textarea  name="content"  rows="15" cols="60" class="editContent"></textarea></p>
+        <p><button  type="button" name="button" class="editPost">edit</button></p>
+      </div>
+    </div>  
+
     <script src="js/admin.js">
     </script>
   </body>

@@ -13,27 +13,11 @@ var bodyParser = require("body-parser")
 var app = express();
 app.use(express.static("public"));
 app.use(bodyParser.json())
-var posts = [
-  {
-    title:"post1",
-    content:"1,2,3,4,5",
-    date:"2016-02-25"
-  },
-  {
-    title:"post2",
-    content:"1,2,3,4,5",
-    date:"2016-02-25"
-  },
-  {
-    title:"post3",
-    content:"1,2,3,4,5",
-    date:"2016-02-25"
-  }
-]
+
 app.get("/posts", function (req, res) {
   connection.query('SELECT * from posts', function(err, rows, fields) {
     if (err) throw err;
-    console.log('Output', rows);
+    // console.log('Output', rows);
     res.send(JSON.stringify(rows))
   });
 })
@@ -46,22 +30,18 @@ app.post("/post", function (req, res) {
 app.post("/edit/:id", function (req, res) {
   var id=req.params.id;
   id=Number(id);
-  posts[id].title=req.body.title
-  posts[id].content=req.body.content
-  posts[id].date=req.body.date
-  res.send("ok")
-})
+  connection.query('UPDATE posts SET ? WHERE id=?', [req.body, id],  function(err, rows, fields) {
+    if (err) throw err;
+    res.send("ok")
+  });
+});
 app.delete("/post/:id", function (req, res) {
   var id = req.params.id;
   id=Number(id);
-  var newList = [];
-  for(var i=0; i<posts.length; i++)  {
-    if (!(i === id)) {
-      newList.push(posts[i])
-    }
-  }
-  posts=newList;
-  res.send("ok");
+  connection.query('DELETE FROM posts WHERE id=?', id,  function(err, rows, fields) {
+    if (err) throw err;
+    res.send("ok")
+  });
 })
 var path = require('path');
 app.route('/p/*').get(function(req, res) {
