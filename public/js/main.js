@@ -3,7 +3,7 @@ function getPosts() {
   var request = new XMLHttpRequest();
 //letrehoztunk egy uj xmlhttp kerdest, new-al peldanyositjuk
 //(minta mi alapjan kell megcsinalni, es abbol egy valos dolgot csinalsz)
-  request.open("GET", "http://localhost:3000/posts")
+  request.open("GET", location.href + "posts")
   //megnyitja a kapcsot amin keresztul get kerest kuldunk majd(15sor) az url-re
   request.onreadystatechange=function () {
 //meghivodik a mikor a readystate v megvaltozik, megvizsgalja mikor

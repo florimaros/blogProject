@@ -5,7 +5,7 @@ var content=document.querySelector("p")
 var id=window.location.pathname
 var link=document.createElement("a")
 link.innerText="backToTheFuture"
-link.setAttribute("href","http://localhost:3000/")
+link.setAttribute("href", "http://" + location.host )
 //visszaadja az url-ben levo eleresi utvonalat
 id=id.split("/")
 //kiertekelodik a jobboldal es atadodik a baloldalnak, foldaraboljuk perjelenkent
@@ -13,9 +13,10 @@ id=id[2]
 id=Number(id)
 //a harmadik elemre van szuksegunk
 var request = new XMLHttpRequest();
-request.open("GET", "http://localhost:3000/posts")
+request.open("GET", "http://" + location.host+ "/posts")
 request.onreadystatechange=function () {
   if (request.readyState===4) {
+    console.log(request.response )
     var response=JSON.parse(request.response)
     for(var i=0; i<response.length; i++) {
       if (id===response[i].id) {
@@ -25,7 +26,7 @@ request.onreadystatechange=function () {
     title.innerText=post.title
     date.innerText=post.date
     content.innerText=post.content
-    title.setAttribute("href", "http://localhost:3000/")
+    title.setAttribute("href","http://" + location.host + "")
   }
 }
 document.body.appendChild(link)

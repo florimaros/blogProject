@@ -51,7 +51,7 @@ postButton.addEventListener("click", function () {
   var postItem={title: title.value, date: date.value, content: content.value}
   var request=new XMLHttpRequest()
   //post kerest kuldunk az url-re beallitjuk a headerjet, kuldjuk el neki a stringe alakitott post itemet
-  request.open("POST", "http://localhost:3000/post")
+  request.open("POST", "http://" + location.host + "/post")
   request.setRequestHeader("Content-Type", "application/json")
   request.send(JSON.stringify(postItem))
 })
@@ -60,7 +60,7 @@ postButton.addEventListener("click", function () {
 function getPosts() {
   var request=new XMLHttpRequest();
 //letrejon egy uj keres get-el mukodik
-  request.open("GET", "http://localhost:3000/posts")
+  request.open("GET", "http://" + location.host + "/posts")
   //posts egy endpoint a szerveren ra egy get kerest var, ha megkapja akkor
   //visszakuldi a kloiensnek az altala tarolt postokat
   request.onreadystatechange=function () {
@@ -80,7 +80,7 @@ function createListItem(tiTle, id) {
   editButton.addEventListener("click", function () {
     editId=id
     var request=new XMLHttpRequest();
-    request.open("GET", "http://localhost:3000/posts")
+    request.open("GET", "http://" + location.host + "/posts")
     request.onreadystatechange=function () {
       if (request.readyState===4) {
         var response=JSON.parse(request.response);
@@ -109,7 +109,7 @@ function createListItem(tiTle, id) {
     //alert(id)
     listItem.remove();
     var request=new XMLHttpRequest();
-    request.open("DELETE", "http://localhost:3000/post/"+id)
+    request.open("DELETE", "http://" + location.host + "/post/"+id)
     request.send();
   })
 }
@@ -128,8 +128,7 @@ editPost.addEventListener("click", function () {
   date: document.querySelector(".editDate").value,
   content: document.querySelector(".editContent").value
 }
-  request.open("POST", "http://localhost:3000/edit/" + editId)
+  request.open("POST", "http://" + location.host + "/edit/" + editId)
   request.setRequestHeader("Content-Type", "application/json")
   request.send(JSON.stringify(postItem))
-
 })
