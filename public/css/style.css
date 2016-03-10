@@ -1,13 +1,34 @@
-html{
-  background: url("../img/bg.jpg")
+*{
+  margin: 0;
+}
+body{
+  font-family: sans-serif;
+}
+.style1 .wrapper{
+  background: #ff8000;
+}
+
+.style2 .wrapper{
+  background: #FF9400;
 }
 
 .post{
-  background: rgba(255, 255, 255, 0.5);
+  margin: 15px 15px;
+  border-radius: 5px;
 }
 
+.style1 .post{
+  background: rgba(0, 128, 0, 1);
+}
+
+.style2 .post{
+  background: #FFB044;
+}
+
+
+
 textarea{
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(0, 128, 0, 0.5);
 }
 
 input{
@@ -16,4 +37,28 @@ input{
 
 button{
   margin:5px;
+}
+
+.post h1 a{
+  color: black;
+}
+
+header{
+  font-size: 50px;
+  text-align: center;
+}
+
+.style1 header{
+  background:black;
+  color:#ff8000;
+}
+
+.style2 header{
+  background:#C16F00;
+  color:black;
+}
+
+
+select{
+  float: right;
 }
