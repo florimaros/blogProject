@@ -90,7 +90,27 @@ function createListItem(tiTle, id) {
         var editDate=document.createElement("input")
         editDate.setAttribute("type", "date")
         editDate.value=response.date
+
+        var editPost=document.createElement("button")
+        editPost.innerText="edit"
+        editPost.addEventListener("click", function () {
+          var request=new XMLHttpRequest();
+          var postItem={title: editTitle.value,
+          date: editDate.value,
+          content: editContent.value
+        }
+          request.open("POST", "http://" + location.host + "/edit/" + editId)
+          request.setRequestHeader("Content-Type", "application/json")
+          request.send(JSON.stringify(postItem))
+        })
+
+
         main.appendChild(editTitle)
+        main.appendChild(editDate)
+        main.appendChild(editContent)
+        main.appendChild(editPost)
+
+
       }
     }
     request.send();
