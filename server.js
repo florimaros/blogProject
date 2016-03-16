@@ -50,3 +50,9 @@ res.sendFile(path.resolve('./public/post.html'));
 app.listen(process.env.PORT || 3000, function () {
   console.log("megyAserver")
 })
+app.post("/users", function (req, res) {
+  connection.query('INSERT INTO users SET ?', req.body, function(err, rows, fields) {
+    if (err) throw err;
+    res.send("ok")
+  });
+})
