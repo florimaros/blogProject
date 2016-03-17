@@ -56,3 +56,26 @@ app.post("/users", function (req, res) {
     res.send("ok")
   });
 })
+
+app.post("/login", function (req, res) {
+  connection.query("SELECT * FROM users WHERE username= ? ", req.body.username, function (err, rows, fields) {
+    if (err) {
+      throw err;
+    }
+    if (rows.length!==0 && rows[0].password===req.body.password) {
+      res.status(200).send()
+    }
+    else {
+      res.status(404).send()
+    }
+  })
+})
+
+app.get("/users", function (req, res) {
+  connection.query("SELECT * FROM users", function (err, rows, fields) {
+    if (err) {
+      throw err;
+    }
+    res.send(rows)
+  })
+})

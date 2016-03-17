@@ -131,3 +131,45 @@ function createListItem(tiTle, id) {
   })
 }
 document.querySelector(".home").setAttribute("href", "http://" + location.host)
+
+var usersList=document.querySelector(".usersList")
+usersList.addEventListener("click", function () {
+  var request=new XMLHttpRequest();
+  request.open("GET", "http://" + location.host + "/users/")
+  request.send();
+  request.onreadystatechange=function () {
+    if (request.readyState===4) {
+      var response=JSON.parse(request.response);
+      var listOfUsers=document.createElement("ul")
+      for (var i = 0; i < response.length; i++) {
+        var listItem=document.createElement("li")
+        listItem.innerText=response[i].username
+        listOfUsers.appendChild(listItem)
+      }
+      var main=document.querySelector(".main")
+      main.innerText=""
+      main.appendChild(listOfUsers)
+      }
+    }
+})
+
+var loginLink=document.querySelector(".login")
+var registerLink=document.querySelector(".register")
+var logoutLink=document.querySelector(".logout")
+function displayLoginControls() {
+  if (localStorage.getItem("username")!==null) {
+    loginLink.parentElement.style.display="none"
+    registerLink.parentElement.style.display="none"
+    logoutLink.parentElement.style.display="inline"
+  }
+  else {
+    loginLink.parentElement.style.display="inline"
+    registerLink.parentElement.style.display="inline"
+    logoutLink.parentElement.style.display="none"
+  }
+}
+logoutLink.addEventListener("click", function () {
+  localStorage.removeItem("username")
+  displayLoginControls()
+})
+displayLoginControls()
