@@ -32,3 +32,33 @@ function createPost(tiTle, daTe, conTent, id) {
   document.querySelector(".wrapper").appendChild(post)
 }
 getPosts()
+
+var loginButton=document.querySelector(".loginButton")
+var goToAdminButton=document.querySelector(".goToAdminButton")
+var registerButton=document.querySelector(".registerButton")
+
+function displayLoginControls() {
+  if (localStorage.getItem("username")!==null) {
+    loginButton.style.display="none"
+    goToAdminButton.style.display="inline"
+    registerButton.style.display="none"
+  }
+  else {
+    loginButton.style.display="inline"
+    goToAdminButton.style.display="none"
+    registerButton.style.display="inline"
+  }
+}
+
+loginButton.addEventListener("click", function () {
+  window.location = 'http://localhost:3000/login.html'
+})
+
+goToAdminButton.addEventListener("click", function () {
+  window.location = 'http://localhost:3000/admin2.html'
+})
+
+registerButton.addEventListener("click", function () {
+  window.location= "http://localhost:3000/register.html"
+})
+displayLoginControls()

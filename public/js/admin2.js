@@ -163,6 +163,7 @@ function displayLoginControls() {
     logoutLink.parentElement.style.display="inline"
   }
   else {
+    window.location = 'http://localhost:3000'
     loginLink.parentElement.style.display="inline"
     registerLink.parentElement.style.display="inline"
     logoutLink.parentElement.style.display="none"

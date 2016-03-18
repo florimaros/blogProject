@@ -51,10 +51,21 @@ app.listen(process.env.PORT || 3000, function () {
   console.log("megyAserver")
 })
 app.post("/users", function (req, res) {
-  connection.query('INSERT INTO users SET ?', req.body, function(err, rows, fields) {
-    if (err) throw err;
-    res.send("ok")
-  });
+  connection.query("SELECT * FROM users WHERE username=?", req.body.username, function (err, rows, fields) {
+    if (err) {
+      throw err
+    }
+    if (rows.length===0) {
+      connection.query('INSERT INTO users SET ?', req.body, function(err, rows, fields) {
+        if (err) throw err;
+        res.status(200).send()
+      })
+    }
+    else {
+      res.status(404).send()
+    }
+  })
+
 })
 
 app.post("/login", function (req, res) {
