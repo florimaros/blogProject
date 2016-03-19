@@ -17,7 +17,6 @@ app.use(bodyParser.json())
 app.get("/posts", function (req, res) {
   connection.query('SELECT * from posts', function(err, rows, fields) {
     if (err) throw err;
-    // console.log('Output', rows);
     res.send(JSON.stringify(rows))
   });
 })

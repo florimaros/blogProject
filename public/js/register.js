@@ -16,7 +16,7 @@ registerButton.addEventListener("click", function () {
         window.location = 'http://localhost:3000/admin2.html'
       }
       else if (request.status===404) {
-        alert("unsucsesfull registration")
+        alert("unsuccesfull registration")
       }
     }
   }
